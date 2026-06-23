@@ -4,3 +4,4 @@ npm create vite@latest .
 npm install
 npm install react-router-dom
 npm run dev
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
