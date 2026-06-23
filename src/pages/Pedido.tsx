@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { usePedidos } from "../hooks/usePedidos";
 import { FormularioPedido } from "../components/FormularioPedido";
 import type { Pedido } from "../types/Pedido";
+import { NavBar } from "../components/NavBar";
 
 export function Pedidos() {
   const { pedidos, agregarPedido, editarPedido, eliminarPedido } = usePedidos();
@@ -30,6 +31,7 @@ export function Pedidos() {
 
   return (
     <div>
+      <NavBar />
       <h1>Pedidos</h1>
 
       <FormularioPedido
