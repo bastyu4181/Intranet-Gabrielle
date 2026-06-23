@@ -49,8 +49,18 @@ export function FormularioCliente({ clienteEditando, onGuardar, onCancelar }: Pr
         />
       </div>
       <div>
-        <label>Teléfono</label>
-        <input value={telefono} onChange={(e) => setTelefono(e.target.value)} required />
+      <label>Teléfono</label>
+        <input
+          value={telefono}
+          onChange={(e) => {
+            const soloNumeros = e.target.value.replace(/\D/g, "");
+            setTelefono(soloNumeros);
+          }}
+          required
+        />
+        {telefono.length > 0 && telefono.length < 9 && (
+          <p style={{ color: "blue" }}>El teléfono debe tener al menos 9 dígitos</p>
+        )}
       </div>
       <button type="submit">Guardar</button>
       {clienteEditando && <button type="button" onClick={onCancelar}>Cancelar</button>}
