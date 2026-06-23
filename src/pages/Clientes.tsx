@@ -3,6 +3,7 @@ import { useClientes } from "../hooks/useClientes";
 import { FormularioCliente } from "../components/FormularioCliente";
 import type { Cliente } from "../types/Cliente";
 import { useSearchParams } from "react-router-dom";
+import { NavBar } from "../components/NavBar";
 
 export function Clientes() {
   const { clientes, agregarCliente, editarCliente, eliminarCliente } = useClientes();
@@ -32,6 +33,7 @@ export function Clientes() {
 
   return (
     <div>
+      <NavBar />
       <h1>Clientes</h1>
 
       <FormularioCliente
