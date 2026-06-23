@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useClientes } from "../hooks/useClientes";
 import { FormularioCliente } from "../components/FormularioCliente";
 import type { Cliente } from "../types/Cliente";
+import { useSearchParams } from "react-router-dom";
 
 export function Clientes() {
   const { clientes, agregarCliente, editarCliente, eliminarCliente } = useClientes();
   const [clienteEditando, setClienteEditando] = useState<Cliente | null>(null);
-  const [busqueda, setBusqueda] = useState("");
+  const [searchParams] = useSearchParams();
+  const [busqueda, setBusqueda] = useState(searchParams.get("buscar") || "");
 
   function handleGuardar(datos: Omit<Cliente, "id">) {
     if (clienteEditando) {
