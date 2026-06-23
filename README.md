@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+Funcionalidades
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Autenticación
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Login simulado con correo y contraseña
+Sesión persistente en localStorage
+Rutas protegidas: si no hay sesión iniciada, redirige automáticamente a /login
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Credenciales de prueba:
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Correo: gabrielle@studio.com
+Contraseña: 1234
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Navegación
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Barra de navegación (NavBar) visible en todas las pantallas internas, con acceso directo a Dashboard, Clientes, Pedidos y Reseñas, además de cierre de sesión
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Dashboard
+
+
+Resumen general: total de clientes, total de pedidos, desglose de pedidos por estado (pendientes, en proceso, finalizados) y total de reseñas
+
+
+Módulo de Clientes (CRUD)
+
+
+Registrar nuevo cliente (nombre, correo, teléfono)
+Validación de teléfono: solo acepta números, bloquea letras y símbolos mientras se escribe
+Listar clientes
+Buscar cliente por nombre (incluye búsqueda automática al llegar desde el detalle de un pedido)
+Editar cliente existente
+Eliminar cliente (con confirmación)
+
+
+Módulo de Pedidos (CRUD)
+
+
+Registrar nuevo pedido: nombre del cliente, tipo de ilustración (fanart, ilustración de personaje, retrato, diseño para empresa), descripción, precio base, tiempo estimado, categoría, estado, fecha y hora, comentario
+Validación de relación con Clientes: el pedido solo se guarda si el nombre del cliente coincide con uno ya registrado en el módulo de Clientes
+Listar pedidos
+Filtrar pedidos por estado (pendiente / en proceso / finalizado)
+Vista de detalle individual por pedido (ruta dinámica /pedidos/:id), con link directo al cliente asociado
+Editar pedido existente
+Eliminar pedido (con confirmación)
+
+
+Módulo de Reseñas (CRUD)
+
+
+Registrar nueva reseña: nombre del cliente, calificación, comentario, fecha, visibilidad (visible / oculto / pendiente)
+Listar reseñas
+Filtrar reseñas por visibilidad
+Vista de detalle individual por reseña (ruta dinámica /resenas/:id)
+Editar reseña existente
+Eliminar reseña (con confirmación)
+
+
+Estructura del proyecto
+
+src/
+  components/     → Componentes reutilizables (formularios, NavBar, rutas protegidas)
+  pages/          → Pantallas completas (Login, Dashboard, Clientes, Pedidos, PedidoDetalle, Resenas, ResenaDetalle)
+  context/        → AuthContext (manejo de sesión global)
+  hooks/          → Hooks personalizados (useClientes, usePedidos, useResenas)
+  types/          → Interfaces de TypeScript (Cliente, Pedido, Resena, Usuario)
+
+Cómo correr el proyecto localmente
+
+bashgit clone https://github.com/bastyu4181/Intranet-Gabrielle.git
+cd Intranet-Gabrielle
+npm install
+npm run dev
