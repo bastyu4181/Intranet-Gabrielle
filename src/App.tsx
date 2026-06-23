@@ -3,13 +3,24 @@ import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
 import { PrivateRoute } from "./components/PrivateRoute";
 import { Clientes } from "./pages/Clientes";
-import { Comisiones } from "./pages/Comisiones";
-import { ComisionDetalle } from "./pages/ComisionDetalle";
+import { Pedidos } from "./pages/Pedido";
+import { PedidoDetalle } from "./pages/PedidoDetalle";
+import { Resenas } from "./pages/Reseña";
+import { ResenaDetalle } from "./pages/ReseñaDetalle";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/clientes"
           element={
@@ -19,27 +30,34 @@ function App() {
           }
         />
         <Route
-          path="/comisiones"
+          path="/pedidos"
           element={
             <PrivateRoute>
-              <Comisiones />
+              <Pedidos />
             </PrivateRoute>
           }
         />
         <Route
-          path="/comisiones/:id"
+          path="/pedidos/:id"
           element={
             <PrivateRoute>
-              <ComisionDetalle />
+              <PedidoDetalle />
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
         <Route
-          path="/dashboard"
+          path="/resenas"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <Resenas />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/resenas/:id"
+          element={
+            <PrivateRoute>
+              <ResenaDetalle />
             </PrivateRoute>
           }
         />
