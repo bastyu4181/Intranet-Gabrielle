@@ -1,13 +1,3 @@
-Funcionalidades
-
-Autenticación
-
-
-Login simulado con correo y contraseña
-Sesión persistente en localStorage
-Rutas protegidas: si no hay sesión iniciada, redirige automáticamente a /login
-
-
 Credenciales de prueba:
 
 
