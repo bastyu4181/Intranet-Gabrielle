@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useResenas } from "../hooks/useReseña";
 import { FormularioResena } from "../components/FormularioReseña";
 import type { Resena } from "../types/Reseña";
+import { NavBar } from "../components/NavBar";
 
 export function Resenas() {
   const { resenas, agregarResena, editarResena, eliminarResena } = useResenas();
@@ -30,6 +31,7 @@ export function Resenas() {
 
   return (
     <div>
+      <NavBar />
       <h1>Reseñas</h1>
 
       <FormularioResena
