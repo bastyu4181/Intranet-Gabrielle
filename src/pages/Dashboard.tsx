@@ -1,22 +1,24 @@
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { useClientes } from "../hooks/useClientes";
-import { useComisiones } from "../hooks/useComisiones";
+import { usePedidos } from "../hooks/usePedidos";
+import { useResenas } from "../hooks/useReseña";
 
 export function Dashboard() {
   const { usuario, logout } = useAuth();
   const navigate = useNavigate();
   const { clientes } = useClientes();
-  const { comisiones } = useComisiones();
+  const { pedidos } = usePedidos();
+  const { resenas } = useResenas();
 
   function handleLogout() {
     logout();
     navigate("/login");
   }
 
-  const comisionesPendientes = comisiones.filter((c) => c.estado === "pendiente").length;
-  const comisionesEnProceso = comisiones.filter((c) => c.estado === "en proceso").length;
-  const comisionesFinalizadas = comisiones.filter((c) => c.estado === "finalizado").length;
+  const pedidosPendientes = pedidos.filter((p) => p.estado === "pendiente").length;
+  const pedidosEnProceso = pedidos.filter((p) => p.estado === "en proceso").length;
+  const pedidosFinalizados = pedidos.filter((p) => p.estado === "finalizado").length;
 
   return (
     <div>
@@ -26,16 +28,19 @@ export function Dashboard() {
       <nav>
         <Link to="/clientes">Ir a Clientes</Link>
         {" | "}
-        <Link to="/comisiones">Ir a Comisiones</Link>
+        <Link to="/pedidos">Ir a Pedidos</Link>
+        {" | "}
+        <Link to="/resenas">Ir a Reseñas</Link>
       </nav>
 
       <h2>Resumen general</h2>
       <ul>
         <li>Total de clientes: {clientes.length}</li>
-        <li>Total de comisiones: {comisiones.length}</li>
-        <li>Pendientes: {comisionesPendientes}</li>
-        <li>En proceso: {comisionesEnProceso}</li>
-        <li>Finalizadas: {comisionesFinalizadas}</li>
+        <li>Total de pedidos: {pedidos.length}</li>
+        <li>Pedidos pendientes: {pedidosPendientes}</li>
+        <li>Pedidos en proceso: {pedidosEnProceso}</li>
+        <li>Pedidos finalizados: {pedidosFinalizados}</li>
+        <li>Total de reseñas: {resenas.length}</li>
       </ul>
     </div>
   );
